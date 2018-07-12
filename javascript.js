@@ -1,11 +1,11 @@
-  // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyCFcPjD2j1ogfZoIrqqA3RZhmrs9SbQdSw",
-    authDomain: "traintime-63ebd.firebaseapp.com",
-    databaseURL: "https://traintime-63ebd.firebaseio.com",
-    projectId: "traintime-63ebd",
-    storageBucket: "",
-    messagingSenderId: "529501648939"
+// Initialize Firebase
+var config = {
+    apiKey: "AIzaSyDp5lflCgUvJtGuH4zWUON6qVQcUhXun9E",
+    authDomain: "trainschedule-789b1.firebaseapp.com",
+    databaseURL: "https://trainschedule-789b1.firebaseio.com",
+    projectId: "trainschedule-789b1",
+    storageBucket: "trainschedule-789b1.appspot.com",
+    messagingSenderId: "391234354738"
   };
   firebase.initializeApp(config);
 
@@ -36,12 +36,14 @@
     $("#firstTrainInput").val("");
     $("#frequencyInput").val("");
 
-    return false;
+    pull();
+    // return false;
 
   })
 
   // Collect data from firebase and store data
 
+  function pull () {
   trainData.ref().on("child_added",function(snapshot){
     var name = snapshot.val().name;
     var destination = snapshot.val().destination;
@@ -57,5 +59,10 @@
     console.log(arrival);
 
     $("#trainTable > tBody").append("<tr><td>"+name+"</td><td>"+destination+"</td><td>"+frequency+"</td><td>"+arrival+"</td><td>"+minutes+"</td><td>");
+  
+
 
   })
+}
+
+pull();
